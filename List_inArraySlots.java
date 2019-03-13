@@ -58,7 +58,6 @@ public class List_inArraySlots {
 
     /**
       Appends @value to the end of this list.
-
       @return true, in keeping with conventions yet to be discussed
      */
      public boolean add( int type   // same meaning as in typeOfElements
@@ -83,11 +82,10 @@ public class List_inArraySlots {
          if (typeOfElements[index] == 2) return new Element(-1, -1.0, stringElements[index], 2);
          return new Element(-1, -1.0, "junk", 0); // in case of failure
      }
-
-    /**
-      Double the capacity of the List_inArraySlots,
-      preserving existing data.
-     */
+     /**
+       Double the capacity of the List_inArraySlots,
+       preserving existing data.
+      */
      private void expand() {
 
        int[] expandedIntElements = new int[intElements.length * 2];
@@ -111,4 +109,3 @@ public class List_inArraySlots {
        typeOfElements = expandedTypeElements;
 
      }
-}
