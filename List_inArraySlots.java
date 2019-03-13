@@ -77,6 +77,12 @@ public class List_inArraySlots {
           return true;
      }
 
+     public Element get(int index) { // currently highly inefficient
+         if (typeOfElements[index] == 0) return new Element(intElements[index], -1.0, "junk", 0);
+         if (typeOfElements[index] == 1) return new Element(-1, doubleElements[index], "junk", 1);
+         if (typeOfElements[index] == 2) return new Element(-1, -1.0, stringElements[index], 2);
+         return new Element(-1, -1.0, "junk", 0); // in case of failure
+     }
 
     /**
       Double the capacity of the List_inArraySlots,
