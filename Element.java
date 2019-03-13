@@ -14,4 +14,10 @@ public class Element {
         this.type = type;
     }
 
+    public String toString() {
+        if (type == 0) return ""+intValue;
+        if (type == 1) return ""+doubleValue;
+        if (type == 2) return ""+stringValue;
+        return ""; // in case of failure
+    }
 }
