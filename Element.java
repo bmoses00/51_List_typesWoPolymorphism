@@ -1,8 +1,8 @@
 public class Element {
-    int intValue;
-    double doubleValue;
-    String stringValue;
-    int type;
+    private int intValue;
+    private double doubleValue;
+    private String stringValue;
+    private int type;
 
     public Element(int intValue
                  , double doubleValue
