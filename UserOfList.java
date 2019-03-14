@@ -11,15 +11,15 @@ public class UserOfList {
         System.out.println( "empty list: " + list);
 
         // Populate the list with diverse elements.
-        list.add( 2, -1, -2.0,  "important");
+        list.add( "STRING", -1, -2.0,  "important");
         System.out.println( "number of elements: " + list.size() );
         System.out.println( "added string: " + list);
 
-        list.add( 0, 17, -2.0,  "junk");
+        list.add( "INTEGER", 17, -2.0,  "junk");
         System.out.println( "number of elements: " + list.size() );
         System.out.println( "added int: " + list);
 
-        list.add( 1, -1, 1.618, "junk");
+        list.add( "DOUBLE", -1, 1.618, "junk");
         System.out.println( "number of elements: " + list.size() );
         System.out.println( "added double: " + list);
 
@@ -28,14 +28,14 @@ public class UserOfList {
 
             if( list.size() == 10) System.out.println( "expansion expected");
 
-            list.add( 0, -elemIndex, -2.0,  "junk");
+            list.add( "INTEGER", -elemIndex, -2.0,  "junk");
             System.out.println( "number of elements: " + list.size() );
         }
         System.out.println("result of expanded list: "
              + list.size() + " elements:");
         System.out.println( list + System.lineSeparator());
-
-        for (int index = list.size(); index >= 0; index--) {
+		
+        for (int index = list.size() - 1; index >= 0; index--) {
             System.out.println(index + ": " + list.get(index));
         }
     }

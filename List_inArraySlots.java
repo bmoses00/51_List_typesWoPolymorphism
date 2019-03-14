@@ -4,13 +4,15 @@
   and Strings.
  */
 
+	
 public class List_inArraySlots {
 
     private int[]    intElements;
     private double[] doubleElements;
     private String[] stringElements;
     private int filledElements; // the number of elements in this list
-
+	
+	private TypeOfElements[] typeOfElements;
     /* type identifier for each element
        That is, typeOfElements[i] == 0 means element i is an integer;
                                      1 means element i is a double;
@@ -18,7 +20,7 @@ public class List_inArraySlots {
         Optional extra education in programming (not comp sci):
             replace these "magic numbers" with an "enumerated type".
      */
-    private int[] typeOfElements;
+    //private String[] typeOfElements;
 
     private static final int INITIAL_CAPACITY = 10;
 
@@ -29,7 +31,7 @@ public class List_inArraySlots {
         intElements = new int[INITIAL_CAPACITY];
         doubleElements = new double[INITIAL_CAPACITY];
         stringElements = new String[INITIAL_CAPACITY];
-        typeOfElements = new int[INITIAL_CAPACITY];
+        typeOfElements = new TypeOfElements[INITIAL_CAPACITY];
     }
 
 
@@ -48,9 +50,9 @@ public class List_inArraySlots {
     public String toString() {
         String output = "[";
         for (int index = 0; index < filledElements; index++) {
-            if (typeOfElements[index] == 0) output += intElements[index] + ",";
-            if (typeOfElements[index] == 1) output += doubleElements[index] + ",";
-            if (typeOfElements[index] == 2) output += stringElements[index] + ",";
+            if (typeOfElements[index] == TypeOfElements.INTEGER) output += intElements[index] + ",";
+            if (typeOfElements[index] == TypeOfElements.DOUBLE) output += doubleElements[index] + ",";
+            if (typeOfElements[index] == TypeOfElements.STRING) output += stringElements[index] + ",";
         }
         return output + "]";
     }
@@ -60,26 +62,26 @@ public class List_inArraySlots {
       Appends @value to the end of this list.
       @return true, in keeping with conventions yet to be discussed
      */
-     public boolean add( int type   // same meaning as in typeOfElements
+     public boolean add( String type   // same meaning as in typeOfElements
                        , int    intValue
                        , double doubleValue
                        , String stringValue
                        ) {
           if (filledElements == intElements.length)
               expand();
-          if (type == 0) intElements[filledElements] = intValue;
-          if (type == 1) doubleElements[filledElements] = doubleValue;
-          if (type == 2) stringElements[filledElements] = stringValue;
+          if (TypeOfElements.valueOf(type) == TypeOfElements.INTEGER) intElements[filledElements] = intValue;
+          if (TypeOfElements.valueOf(type) == TypeOfElements.DOUBLE) doubleElements[filledElements] = doubleValue;
+          if (TypeOfElements.valueOf(type) == TypeOfElements.STRING) stringElements[filledElements] = stringValue;
 
-          typeOfElements[filledElements] = type;
+          typeOfElements[filledElements] = TypeOfElements.valueOf(type);
           filledElements++;
           return true;
      }
 
      public Element get(int index) { // currently highly inefficient
-         if (typeOfElements[index] == 0) return new Element(intElements[index], -1.0, "junk", 0);
-         if (typeOfElements[index] == 1) return new Element(-1, doubleElements[index], "junk", 1);
-         if (typeOfElements[index] == 2) return new Element(-1, -1.0, stringElements[index], 2);
+         if (typeOfElements[index] == TypeOfElements.INTEGER) return new Element(intElements[index], -1.0, "junk", 0);
+         if (typeOfElements[index] == TypeOfElements.DOUBLE) return new Element(-1, doubleElements[index], "junk", 1);
+         if (typeOfElements[index] == TypeOfElements.STRING) return new Element(-1, -1.0, stringElements[index], 2);
          return new Element(-1, -1.0, "junk", 0); // in case of failure
      }
      /**
@@ -91,7 +93,7 @@ public class List_inArraySlots {
        int[] expandedIntElements = new int[intElements.length * 2];
        double[] expandedDoubleElements = new double[doubleElements.length * 2];
        String[] expandedStringElements = new String[stringElements.length * 2];
-       int[] expandedTypeElements = new int[typeOfElements.length * 2];
+       TypeOfElements[] expandedTypeElements = new TypeOfElements[typeOfElements.length * 2];
        // expand everything to avoid index out of range errors
        // intELements.length same as others.length
 
@@ -109,3 +111,4 @@ public class List_inArraySlots {
        typeOfElements = expandedTypeElements;
 
      }
+}
