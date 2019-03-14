@@ -1,23 +1,23 @@
 public class Element {
+	private String type;
     private int intValue;
     private double doubleValue;
     private String stringValue;
-    private int type;
 
-    public Element(int intValue
+    public Element(String type,
+				   int intValue
                  , double doubleValue
-                 , String stringValue
-                 , int type) {
+                 , String stringValue) {
+		this.type = type;
+	    this.type = type;
         this.intValue = intValue;
         this.doubleValue = doubleValue;
         this.stringValue = stringValue;
-        this.type = type;
     }
 
     public String toString() {
-        if (type == 0) return ""+intValue;
-        if (type == 1) return ""+doubleValue;
-        if (type == 2) return ""+stringValue;
-        return ""; // in case of failure
+        if (TypeOfElements.valueOf(type) == TypeOfElements.INTEGER) return ""+intValue;
+        if (TypeOfElements.valueOf(type) == TypeOfElements.DOUBLE) return ""+doubleValue;
+        else return ""+stringValue;
     }
 }
